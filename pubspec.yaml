@@ -67,6 +67,30 @@ flutter:
     - images/burger1.jpg
     - images/grilled_chicken.jpg
     - images/shawarma.jpg
+    - images/idly.jpg
+    - images/dosa.jpg
+    - images/chappathi.jpg
+    - images/pongal.jpg
+    - images/poori.jpg
+    - images/ravakesari.jpg
+    - images/vada.jpg
+    - images/veg_fries.jpg
+    - images/veg_noodles.jpg
+    - images/chicken_biriyani.jpg
+    - images/mutton_biriyani.jpg
+    - images/egg_biriyani.jpg
+    - images/chiili_chicken.jpg
+    - images/grill_chicken.jpg
+    - images/chicken_manchurian.jpg
+    - images/mutton_fry.jpg
+    - images/mutton_pepper.jpg
+    - images/leg_piece.jpg
+    - images/cheese_cake.jpg
+    - images/fruit_salad.jpg
+    - images/brownies.jpg
+    - images/cup_cake.jpg
+    - images/cookies.jpg
+    - images/icecream.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -85,7 +109,10 @@ flutter:
         - asset: assets/fonts/FascinateInline-Regular.ttf
     - family: Permanent Marker
       fonts:
-        - asset: assets/fonts/PermanentMarker-Regular.ttf      
+        - asset: assets/fonts/PermanentMarker-Regular.ttf
+    - family: Varela Round
+      fonts:
+        - asset: assets/fonts/VarelaRound-Regular.ttf           
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

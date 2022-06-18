@@ -25,16 +25,17 @@ class _homeState extends State<home> with TickerProviderStateMixin {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 39, 24, 66),
+        backgroundColor:
+            Color.fromARGB(255, 48, 47, 47), //Color.fromARGB(255, 39, 24, 66)
         appBar: AppBar(
-          title: const Text(
+          title: Text(
             "FOOD APP",
             style: const TextStyle(
               color: const Color.fromARGB(255, 5, 5, 5),
               fontFamily: 'Fascinate Inline',
             ),
           ),
-          backgroundColor: const Color.fromARGB(255, 113, 125, 179),
+          backgroundColor: Colors.deepPurple[200],
           centerTitle: true,
           elevation: 10,
           actions: <Widget>[
@@ -42,12 +43,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.search,
-                  color: const Color.fromARGB(255, 39, 24, 66),
+                  color: const Color.fromARGB(255, 48, 47, 47),
                 )),
             IconButton(
                 icon: const Icon(
                   Icons.more_vert,
-                  color: const Color.fromARGB(255, 39, 24, 66),
+                  color: const Color.fromARGB(255, 48, 47, 47),
                 ),
                 onPressed: () {}),
           ],
@@ -58,7 +59,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
             children: [
               DrawerHeader(
                 decoration: const BoxDecoration(
-                  color: const Color.fromARGB(255, 113, 125, 179),
+                  color: Color.fromARGB(255, 182, 159, 221),
                 ),
                 child: Column(
                   children: [
@@ -135,7 +136,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                       Image.asset("images/shawarma.jpg")
                     ],
                     autoplay: false,
-                    dotColor: const Color.fromARGB(255, 113, 125, 179),
+                    dotColor: Colors.deepPurple[200],
                     // dotBgColor: Color.fromARGB(255, 39, 24, 66),
                     dotSpacing: 40,
                   ),
@@ -144,41 +145,831 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: TabBar(
+                        indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.deepPurple[200]),
                         controller: _tabController,
                         isScrollable: true,
                         labelPadding: EdgeInsets.only(left: 20, right: 20),
-                        labelColor: Colors.white,
-                        unselectedLabelColor:
-                            Color.fromARGB(255, 113, 125, 179),
+                        labelColor: Colors.black,
+                        unselectedLabelColor: Colors.deepPurple[200],
                         tabs: [
                           Tab(
-                            text: "Veg",
-                          ),
+                              child: Text(
+                            "Veg",
+                            style: TextStyle(
+                              fontFamily: 'Varela Round',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          )),
                           Tab(
-                            text: "NonVeg",
-                          ),
+                              child: Text(
+                            "NonVeg",
+                            style: TextStyle(
+                              fontFamily: 'Varela Round',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          )),
                           Tab(
-                            text: "Deserts",
-                          ),
+                              child: Text(
+                            'Deserts',
+                            style: TextStyle(
+                              fontFamily: 'Varela Round',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          )),
                           Tab(
-                            text: "Chaats",
-                          ),
+                              child: Text(
+                            "Chaats",
+                            style: TextStyle(
+                              fontFamily: 'Varela Round',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          )),
                           Tab(
-                            text: "Shakes & Drinks",
-                          )
+                              child: Text(
+                            "Shakes & Drinks",
+                            style: TextStyle(
+                              fontFamily: 'Varela Round',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          )),
                         ]),
                   ),
                 ),
                 Container(
                   width: double.maxFinite,
-                  height: 500,
-                  child: TabBarView(controller: _tabController, children: [
-                    Text("hi"),
-                    Text("hello"),
-                    Text("why"),
-                    Text("when"),
-                    Text("where"),
-                  ]),
+                  height: 280,
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(7.0),
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage:
+                                              AssetImage("images/idly.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage:
+                                              AssetImage("images/dosa.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage: AssetImage(
+                                              "images/chappathi.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage:
+                                              AssetImage("images/poori.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage:
+                                              AssetImage("images/pongal.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage:
+                                              AssetImage("images/vada.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage: AssetImage(
+                                              "images/ravakesari.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage: AssetImage(
+                                              "images/veg_fries.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  height: 90,
+                                  color: Colors.deepPurple[200],
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircleAvatar(
+                                          radius: 40,
+                                          backgroundImage: AssetImage(
+                                              "images/veg_noodles.jpg"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: ListView(
+                          scrollDirection: Axis.vertical,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/chicken_biriyani.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/mutton_biriyani.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/egg_biriyani.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/chiili_chicken.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/mutton_fry.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/grill_chicken.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/mutton_pepper.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/leg_piece.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/chicken_manchurian.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: ListView(
+                          scrollDirection: Axis.vertical,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/icecream.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/brownies.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/fruit_salad.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/cheese_cake.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/cookies.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/cup_cake.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: ListView(
+                          scrollDirection: Axis.vertical,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/idly.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/dosa.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/chappathi.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/poori.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/pongal.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/vada.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/ravakesari.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/veg_fries.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage: AssetImage(
+                                            "images/veg_noodles.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: ListView(
+                          scrollDirection: Axis.vertical,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/idly.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/dosa.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/chappathi.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/poori.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 90,
+                                color: Colors.deepPurple[200],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage("images/pongal.jpg"),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -188,3 +979,6 @@ class _homeState extends State<home> with TickerProviderStateMixin {
     );
   }
 }
+ // child: Column(
+//   children: [ListTile()],
+// ),
