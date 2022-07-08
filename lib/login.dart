@@ -18,7 +18,7 @@ class _loginState extends State<login> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black12,
       body: SafeArea(
         child: Expanded(
           flex: 2,
@@ -29,7 +29,7 @@ class _loginState extends State<login> {
                 "LOGIN PAGE",
                 style: TextStyle(
                     fontFamily: 'Varela Round',
-                    color: Colors.blueGrey,
+                    color: Colors.white,
                     fontSize: 21,
                     fontWeight: FontWeight.w500),
               ),

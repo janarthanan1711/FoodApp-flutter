@@ -17,7 +17,7 @@ class _signupState extends State<signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black, //Color.fromARGB(255, 241, 161, 69)
+      backgroundColor: Colors.black12, //Color.fromARGB(255, 241, 161, 69)
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -26,7 +26,7 @@ class _signupState extends State<signup> {
               'SIGNUP PAGE',
               style: TextStyle(
                   fontFamily: 'Varela Round',
-                  color: Colors.blueGrey,
+                  color: Colors.white,
                   fontSize: 21,
                   fontWeight: FontWeight.w500),
             ),
@@ -34,7 +34,7 @@ class _signupState extends State<signup> {
               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
               child: Divider(
                 thickness: 2,
-                color: Colors.blueGrey,
+                color: Colors.white,
               ),
             ),
             Container(
