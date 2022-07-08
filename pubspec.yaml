@@ -84,13 +84,21 @@ flutter:
     - images/chicken_manchurian.jpg
     - images/mutton_fry.jpg
     - images/mutton_pepper.jpg
-    - images/leg_piece.jpg
     - images/cheese_cake.jpg
     - images/fruit_salad.jpg
     - images/brownies.jpg
     - images/cup_cake.jpg
     - images/cookies.jpg
     - images/icecream.jpg
+    - images/pani_puri.jpg
+    - images/bhel_puri.jpg
+    - images/samosa.jpg
+    - images/apple.jpg
+    - images/choco_milkshake.jpg
+    - images/lime.jpg
+    - images/orange.jpg
+    - images/venilla.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

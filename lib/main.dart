@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromARGB(255, 48, 47, 47),
+      backgroundColor: Color.fromARGB(255, 252, 135, 1),
       body: SafeArea(
         child: Expanded(
           flex: 2,
