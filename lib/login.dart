@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_application_3/main.dart';
 import 'package:flutter_application_3/home.dart';
 import 'package:flutter_application_3/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class login extends StatefulWidget {
   login({Key? key}) : super(key: key);
@@ -16,6 +17,19 @@ class login extends StatefulWidget {
 class _loginState extends State<login> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late String _email, _password;
+
+  void signIn(BuildContext context) async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: _email, password: _password)
+        .catchError((onError) {
+      print(onError);
+    }).then((authUser) {
+      if (authUser.user != null) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => home()));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +74,7 @@ class _loginState extends State<login> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextFormField(
+                              keyboardType: TextInputType.emailAddress,
                               onSaved: (value) {
                                 _email = value!;
                               },
@@ -82,7 +97,7 @@ class _loginState extends State<login> {
                                   labelText: "EMAIL ADDRESS"),
                             ),
                             TextFormField(
-                              keyboardType: TextInputType.emailAddress,
+                              keyboardType: TextInputType.visiblePassword,
                               onSaved: (value) {
                                 _password = value!;
                               },
@@ -143,20 +158,21 @@ class _loginState extends State<login> {
                                             if (formKey.currentState!
                                                 .validate()) {
                                               (formKey.currentState?.save());
-                                              if (_email ==
-                                                      "test123@gmail.com" &&
-                                                  _password == "pass@123") {
-                                                FocusScope.of(context)
-                                                    .unfocus();
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            home()));
-                                              } else {
-                                                print(
-                                                    "Email and Password is invalid!");
-                                              }
+                                              signIn(context);
+                                              // if (_email ==
+                                              //         "test123@gmail.com" &&
+                                              //     _password == "pass@123") {
+                                              //   FocusScope.of(context)
+                                              //       .unfocus();
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          home()));
+                                              // } else {
+                                              //   print(
+                                              //       "Email and Password is invalid!");
+                                              // }
                                             }
                                           },
                                           child: Text(

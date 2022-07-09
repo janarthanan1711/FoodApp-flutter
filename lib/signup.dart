@@ -4,6 +4,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_3/main.dart';
 import 'package:flutter_application_3/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class signup extends StatefulWidget {
   signup({Key? key}) : super(key: key);
@@ -13,6 +14,26 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
+  GlobalKey<FormState> formKeys = GlobalKey<FormState>();
+  late String _emails, _passwords, _phone, _name;
+
+  void signUp(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: _emails, password: _passwords)
+          .catchError((onError) {
+        print(onError);
+      }).then((authUser) {
+        if (authUser.user != null) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => login()));
+        }
+      });
+    } on FirebaseAuthException catch (e) {
+      Utils.showSnackBar(e.message);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +77,16 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: TextFormField(
+                              onSaved: (value) {
+                                _name = value!;
+                              },
+                              validator: ((name) {
+                                if (name!.isEmpty)
+                                  return "Please enter name";
+                                else if (name.length < 2 && name.length > 15)
+                                  return "its not valid name";
+                                return null;
+                              }),
                               decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.account_box_rounded,
@@ -69,6 +100,20 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              onSaved: (value) {
+                                _emails = value!;
+                              },
+                              validator: ((email) {
+                                if (email!.isEmpty)
+                                  return "Please enter email";
+                                else if (!RegExp(
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(email)) {
+                                  return "Invalid email";
+                                }
+                                return null;
+                              }),
                               decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
@@ -82,6 +127,17 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
+                              keyboardType: TextInputType.phone,
+                              onSaved: (value) {
+                                _phone = value!;
+                              },
+                              validator: ((phone) {
+                                if (phone!.isEmpty)
+                                  return "Please enter Mobile Number";
+                                else if (phone.length > 10)
+                                  return "Invalid Mobile Number";
+                                return null;
+                              }),
                               decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.call,
@@ -95,6 +151,19 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
+                              keyboardType: TextInputType.visiblePassword,
+                              onSaved: (value) {
+                                _passwords = value!;
+                              },
+                              validator: (password) {
+                                if (password!.isEmpty) {
+                                  return "Please enter a password";
+                                } else if (password.length < 8 ||
+                                    password.length > 12) {
+                                  return "please enter between 8 to 12 characters";
+                                  return null;
+                                }
+                              },
                               decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.password,
@@ -160,10 +229,14 @@ class _signupState extends State<signup> {
                                     primary: Color.fromARGB(255, 250, 251, 252),
                                   ),
                                   onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => login()));
+                                    if (formKeys.currentState!.validate()) {
+                                      (formKeys.currentState?.save());
+                                      signUp(context);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => login()));
+                                    }
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -193,3 +266,19 @@ class _signupState extends State<signup> {
     );
   }
 }
+
+class Utils {
+  GlobalKey<ScaffoldMessengerState> messengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+  static showSnackBar(String? text) {
+    if (text == null) return;
+
+    final snackBar = SnackBar(content: Text(text));
+    // ignore: prefer_typing_uninitialized_variables
+    var messengerKey;
+    messengerKey.currentState!
+      ..removeCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
+}
+// ScaffoldMessengerKey: Utils.messengerKey,
