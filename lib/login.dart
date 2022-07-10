@@ -35,7 +35,7 @@ class _loginState extends State<login> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.white70,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
@@ -49,22 +49,22 @@ class _loginState extends State<login> {
                     "LOGIN PAGE",
                     style: TextStyle(
                         fontFamily: 'Varela Round',
-                        color: Colors.white,
-                        fontSize: 21,
+                        color: Colors.orange,
+                        fontSize: 30,
                         fontWeight: FontWeight.w500),
                   ),
                   Padding(
                     padding: EdgeInsets.all(20.0),
                     child: CircleAvatar(
                       radius: 60,
-                      backgroundImage: AssetImage("images/food.webp"),
+                      backgroundImage: AssetImage("images/foods.webp"),
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.all(11),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(11),
-                      color: Colors.grey[400],
+                      color: Colors.grey[200],
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(11.0),
@@ -145,6 +145,9 @@ class _loginState extends State<login> {
                                 Column(
                                   children: [
                                     Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
                                       width: 366,
                                       height: 75,
                                       child: Padding(
@@ -152,8 +155,7 @@ class _loginState extends State<login> {
                                         child: RaisedButton(
                                           elevation: 5,
                                           splashColor: Colors.deepOrange,
-                                          color:
-                                              Color.fromARGB(255, 48, 47, 47),
+                                          color: Colors.orange,
                                           onPressed: () {
                                             if (formKey.currentState!
                                                 .validate()) {
@@ -182,6 +184,9 @@ class _loginState extends State<login> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
                                         ),
                                       ),
                                     ),

@@ -37,6 +37,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
             style: const TextStyle(
               color: const Color.fromARGB(255, 5, 5, 5),
               fontFamily: 'Fascinate Inline',
+              fontSize: 30,
             ),
           ),
           backgroundColor: Color.fromARGB(255, 252, 135, 1),
@@ -59,7 +60,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
             children: [
               DrawerHeader(
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 252, 188, 93),
+                  color: Color.fromARGB(255, 250, 177, 69),
                 ),
                 child: Column(
                   children: [

@@ -17,28 +17,24 @@ class _signupState extends State<signup> {
   GlobalKey<FormState> formKeys = GlobalKey<FormState>();
   late String _emails, _passwords, _phone, _name;
 
-  void signUp(BuildContext context) async {
-    try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: _emails, password: _passwords)
-          .catchError((onError) {
-        print(onError);
-      }).then((authUser) {
-        if (authUser.user != null) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => login()));
-        }
-      });
-    } on FirebaseAuthException catch (e) {
-      Utils.showSnackBar(e.message);
-    }
-  }
+  // void signUp(BuildContext context) async {
+  //   await FirebaseAuth.instance
+  //       .createUserWithEmailAndPassword(email: _emails, password: _passwords)
+  //       .catchError((onError) {
+  //     print(onError);
+  //   }).then((authUser) {
+  //     if (authUser.user != null) {
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => login()));
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.black12, //Color.fromARGB(255, 241, 161, 69)
+      backgroundColor: Colors.white70, //Color.fromARGB(255, 241, 161, 69)
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
@@ -50,8 +46,8 @@ class _signupState extends State<signup> {
                   'SIGNUP PAGE',
                   style: TextStyle(
                       fontFamily: 'Varela Round',
-                      color: Colors.white,
-                      fontSize: 21,
+                      color: Colors.orange,
+                      fontSize: 30,
                       fontWeight: FontWeight.w500),
                 ),
                 Padding(
@@ -59,14 +55,14 @@ class _signupState extends State<signup> {
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
                   child: Divider(
                     thickness: 2,
-                    color: Colors.white,
+                    color: Colors.orange,
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.all(11),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(11),
-                    color: Colors.grey[400],
+                    color: Colors.grey[200],
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(11.0),
@@ -187,13 +183,18 @@ class _signupState extends State<signup> {
                                       child: RaisedButton(
                                         elevation: 5,
                                         splashColor: Colors.deepOrange,
-                                        color: Color.fromARGB(255, 48, 47, 47),
+                                        color: Colors.orange,
                                         onPressed: () {
+                                          // if (formKeys.currentState!
+                                          //     .validate()) {
+                                          // (formKeys.currentState?.save());
+                                          // signUp(context);
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       login()));
+                                          // }
                                         },
                                         child: Text(
                                           "SIGNUP",
@@ -202,6 +203,9 @@ class _signupState extends State<signup> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
                                       ),
                                     ),
                                   ),
@@ -229,14 +233,10 @@ class _signupState extends State<signup> {
                                     primary: Color.fromARGB(255, 250, 251, 252),
                                   ),
                                   onPressed: () {
-                                    if (formKeys.currentState!.validate()) {
-                                      (formKeys.currentState?.save());
-                                      signUp(context);
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => login()));
-                                    }
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => login()));
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -266,19 +266,3 @@ class _signupState extends State<signup> {
     );
   }
 }
-
-class Utils {
-  GlobalKey<ScaffoldMessengerState> messengerKey =
-      GlobalKey<ScaffoldMessengerState>();
-  static showSnackBar(String? text) {
-    if (text == null) return;
-
-    final snackBar = SnackBar(content: Text(text));
-    // ignore: prefer_typing_uninitialized_variables
-    var messengerKey;
-    messengerKey.currentState!
-      ..removeCurrentSnackBar()
-      ..showSnackBar(snackBar);
-  }
-}
-// ScaffoldMessengerKey: Utils.messengerKey,
