@@ -6,6 +6,7 @@ import 'package:flutter_application_3/main.dart';
 import 'package:flutter_application_3/home.dart';
 import 'package:flutter_application_3/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class login extends StatefulWidget {
   login({Key? key}) : super(key: key);
@@ -21,13 +22,13 @@ class _loginState extends State<login> {
   void signIn(BuildContext context) async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: _email, password: _password)
-        .catchError((onError) {
-      print(onError);
-    }).then((authUser) {
+        .then((authUser) {
       if (authUser.user != null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => home()));
       }
+    }).catchError((e) {
+      Fluttertoast.showToast(msg: e!.message);
     });
   }
 

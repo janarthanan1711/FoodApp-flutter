@@ -1,3 +1,9 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -5,6 +11,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_application_3/main.dart';
 import 'package:flutter_application_3/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_3/model/userModel.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class signup extends StatefulWidget {
   signup({Key? key}) : super(key: key);
@@ -14,21 +22,101 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
-  GlobalKey<FormState> formKeys = GlobalKey<FormState>();
-  late String _emails, _passwords, _phone, _name;
+  final GlobalKey<FormState> formKeys = GlobalKey<FormState>();
+  // late String _emails, _passwords, _phone, _name;
 
-  // void signUp(BuildContext context) async {
-  //   await FirebaseAuth.instance
-  //       .createUserWithEmailAndPassword(email: _emails, password: _passwords)
-  //       .catchError((onError) {
-  //     print(onError);
-  //   }).then((authUser) {
-  //     if (authUser.user != null) {
-  //       Navigator.push(
-  //           context, MaterialPageRoute(builder: (context) => login()));
-  //     }
-  //   });
+  final _name = TextEditingController();
+  final _emails = TextEditingController();
+  final _phone = TextEditingController();
+  final _passwords = TextEditingController();
+  final _uid = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
+
+  void signUp(
+    BuildContext context,
+    String _emails,
+    String _passwords,
+    String _name,
+    String _phone,
+    String _uid,
+  ) async {
+    (formKeys.currentState?.validate());
+    await _auth
+        .createUserWithEmailAndPassword(
+          email: _emails,
+          password: _passwords,
+        )
+        .then((user) => {
+              postDetailsToFirestore(),
+              if (user.user != null)
+                {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => login())),
+                }
+            })
+        .catchError((e) {
+      Fluttertoast.showToast(msg: e!.message);
+    });
+    //   .catchError((onError) {
+    // print(onError);
+    // });
+    // .then((authUser) {
+    //   if (authUser.user != null) {
+    //     Navigator.push(
+    //         context, MaterialPageRoute(builder: (context) => login()));
+    //   }
+    // });
+  }
+  // void signUp(String _emails, String _passwords) async {
+  //   if (formKeys.currentState!.validate()) {
+  //     await FirebaseAuth.instance
+  //         .createUserWithEmailAndPassword(email: _emails, password: _passwords)
+  //         .then((value) => {postDetailsToFirestore()})
+  //         .catchError((e) {
+  //       Fluttertoast.showToast(msg: e!.message);
+  //     });
+  //   }
   // }
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });
+  }
+
+  postDetailsToFirestore() async {
+    //calling our firestore
+    //calling our usermodel
+    //sending these values
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+
+    userModel usermodel = userModel(
+      uid: 'uid',
+      name: 'name',
+      email: 'email',
+      phone: 'phone',
+      password: 'password',
+    );
+
+    usermodel.email = user!.email;
+    usermodel.uid = user.uid;
+    usermodel.name = _name.text;
+    usermodel.password = _passwords.text;
+    usermodel.phone = _phone.text;
+
+    await firebaseFirestore
+        .collection('userDatas')
+        .doc(user.uid)
+        .set(usermodel.toMap());
+    Fluttertoast.showToast(msg: 'Account Created Successfully');
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) => login()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,20 +155,22 @@ class _signupState extends State<signup> {
                   child: Padding(
                     padding: const EdgeInsets.all(11.0),
                     child: Form(
+                      key: formKeys,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: TextFormField(
-                              onSaved: (value) {
-                                _name = value!;
+                              controller: _name,
+                              onSaved: (name) {
+                                _name.text = name!;
                               },
                               validator: ((name) {
                                 if (name!.isEmpty) {
                                   return "Please enter name";
-                                } else if (name.length < 2 &&
-                                    name.length > 15) {
+                                } else if (name.length > 2 &&
+                                    name.length < 15) {
                                   return "its not valid name";
                                 }
                                 return null;
@@ -98,9 +188,10 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
+                              controller: _emails,
                               keyboardType: TextInputType.emailAddress,
-                              onSaved: (value) {
-                                _emails = value!;
+                              onSaved: (email) {
+                                _emails.text = email!;
                               },
                               validator: ((email) {
                                 if (email!.isEmpty)
@@ -125,9 +216,10 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
+                              controller: _phone,
                               keyboardType: TextInputType.phone,
-                              onSaved: (value) {
-                                _phone = value!;
+                              onSaved: (phone) {
+                                _phone.text = phone!;
                               },
                               validator: ((phone) {
                                 if (phone!.isEmpty)
@@ -149,9 +241,10 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
-                              keyboardType: TextInputType.visiblePassword,
-                              onSaved: (value) {
-                                _passwords = value!;
+                              controller: _passwords,
+                              obscureText: true,
+                              onSaved: (password) {
+                                _passwords.text = password!;
                               },
                               validator: (password) {
                                 if (password!.isEmpty) {
@@ -187,16 +280,27 @@ class _signupState extends State<signup> {
                                         splashColor: Colors.deepOrange,
                                         color: Colors.orange,
                                         onPressed: () {
-                                          // if (formKeys.currentState!
-                                          //     .validate()) {
-                                          // (formKeys.currentState?.save());
-                                          // signUp(context);
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      login()));
-                                          // }
+                                          if (formKeys.currentState!
+                                              .validate()) {
+                                            (formKeys.currentState?.save());
+                                            signUp(
+                                                context,
+                                                _emails.text,
+                                                _passwords.text,
+                                                _name.text,
+                                                _phone.text,
+                                                _uid.text);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        login()));
+                                            // }
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg:
+                                                    'Please enter a valid details');
+                                          }
                                         },
                                         child: Text(
                                           "SIGNUP",
