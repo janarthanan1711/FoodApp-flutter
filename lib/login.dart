@@ -136,11 +136,7 @@ class _loginState extends State<login> {
                                 ),
                               ),
                             ),
-                            // SizedBox(
-                            //   height: 3,
-                            // ),
                             Row(
-                              // crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Column(
                                   children: [

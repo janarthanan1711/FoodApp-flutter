@@ -77,10 +77,12 @@ class _signupState extends State<signup> {
                                 _name = value!;
                               },
                               validator: ((name) {
-                                if (name!.isEmpty)
+                                if (name!.isEmpty) {
                                   return "Please enter name";
-                                else if (name.length < 2 && name.length > 15)
+                                } else if (name.length < 2 &&
+                                    name.length > 15) {
                                   return "its not valid name";
+                                }
                                 return null;
                               }),
                               decoration: InputDecoration(

@@ -48,7 +48,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
               onPressed: () {},
               icon: const Icon(
                 Icons.search,
-                color: const Color.fromARGB(255, 48, 47, 47),
+                color: Color.fromARGB(255, 5, 5, 5),
               ),
             ),
           ],
@@ -141,7 +141,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                         isScrollable: true,
                         labelPadding: EdgeInsets.only(left: 20, right: 20),
                         labelColor: Colors.black,
-                        unselectedLabelColor: Color.fromARGB(221, 44, 44, 44),
+                        unselectedLabelColor: Color.fromARGB(221, 59, 59, 59),
                         tabs: [
                           Tab(
                               child: Text(
