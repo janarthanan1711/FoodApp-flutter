@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new, unnecessary_this
+// ignore_for_file: unnecessary_new, unnecessary_this, deprecated_member_use
 
 // import 'dart:ffi';
 
