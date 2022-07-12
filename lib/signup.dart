@@ -115,6 +115,7 @@ class _signupState extends State<signup> {
         .set(usermodel.toMap());
     Fluttertoast.showToast(msg: 'Account Created Successfully');
 
+    // ignore: use_build_context_synchronously
     Navigator.push(context, MaterialPageRoute(builder: (context) => login()));
   }
 
@@ -130,7 +131,7 @@ class _signupState extends State<signup> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'SIGNUP PAGE',
                   style: TextStyle(
                       fontFamily: 'Varela Round',
@@ -138,9 +139,8 @@ class _signupState extends State<signup> {
                       fontSize: 30,
                       fontWeight: FontWeight.w500),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
                   child: Divider(
                     thickness: 2,
                     color: Colors.orange,
@@ -175,7 +175,7 @@ class _signupState extends State<signup> {
                                 }
                                 return null;
                               }),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.account_box_rounded,
                                     color: Colors.orange,
@@ -194,16 +194,16 @@ class _signupState extends State<signup> {
                                 _emails.text = email!;
                               },
                               validator: ((email) {
-                                if (email!.isEmpty)
+                                if (email!.isEmpty) {
                                   return "Please enter email";
-                                else if (!RegExp(
+                                } else if (!RegExp(
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                     .hasMatch(email)) {
                                   return "Invalid email";
                                 }
                                 return null;
                               }),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
                                     color: Colors.orange,
@@ -222,10 +222,11 @@ class _signupState extends State<signup> {
                                 _phone.text = phone!;
                               },
                               validator: ((phone) {
-                                if (phone!.isEmpty)
+                                if (phone!.isEmpty) {
                                   return "Please enter Mobile Number";
-                                else if (phone.length > 10)
+                                } else if (phone.length > 10) {
                                   return "Invalid Mobile Number";
+                                }
                                 return null;
                               }),
                               decoration: InputDecoration(
@@ -252,10 +253,10 @@ class _signupState extends State<signup> {
                                 } else if (password.length < 8 ||
                                     password.length > 12) {
                                   return "please enter between 8 to 12 characters";
-                                  return null;
                                 }
+                                return null;
                               },
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.password,
                                     color: Colors.orange,
@@ -302,16 +303,16 @@ class _signupState extends State<signup> {
                                                     'Please enter a valid details');
                                           }
                                         },
-                                        child: Text(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: const Text(
                                           "SIGNUP",
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
                                       ),
                                     ),
                                   ),
@@ -324,7 +325,7 @@ class _signupState extends State<signup> {
                             children: [
                               Center(
                                 child: Container(
-                                  child: Text(
+                                  child: const Text(
                                     'Already An User?..',
                                     style: TextStyle(
                                       fontSize: 14,
@@ -336,7 +337,8 @@ class _signupState extends State<signup> {
                               Container(
                                 child: TextButton(
                                   style: TextButton.styleFrom(
-                                    primary: Color.fromARGB(255, 250, 251, 252),
+                                    primary: const Color.fromARGB(
+                                        255, 250, 251, 252),
                                   ),
                                   onPressed: () {
                                     Navigator.push(
@@ -344,9 +346,9 @@ class _signupState extends State<signup> {
                                         MaterialPageRoute(
                                             builder: (context) => login()));
                                   },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8.0),
+                                  child: const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 8.0),
                                     child: Text(
                                       'LOGIN',
                                       style: TextStyle(

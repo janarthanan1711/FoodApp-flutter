@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -46,7 +48,7 @@ class _loginState extends State<login> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "LOGIN PAGE",
                     style: TextStyle(
                         fontFamily: 'Varela Round',
@@ -54,7 +56,7 @@ class _loginState extends State<login> {
                         fontSize: 30,
                         fontWeight: FontWeight.w500),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(20.0),
                     child: CircleAvatar(
                       radius: 60,
@@ -80,15 +82,16 @@ class _loginState extends State<login> {
                                 _email = value!;
                               },
                               validator: ((email) {
-                                if (email!.isEmpty)
+                                if (email!.isEmpty) {
                                   return "Please enter email";
-                                else if (!RegExp(
+                                } else if (!RegExp(
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                    .hasMatch(email))
+                                    .hasMatch(email)) {
                                   return "its not valid email";
+                                }
                                 return null;
                               }),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
                                     color: Colors.orange,
@@ -109,10 +112,10 @@ class _loginState extends State<login> {
                                 } else if (password.length < 8 ||
                                     password.length > 12) {
                                   return "please enter between 8 to 12 characters";
-                                  return null;
                                 }
+                                return null;
                               },
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.password,
                                     color: Colors.orange,
@@ -126,9 +129,8 @@ class _loginState extends State<login> {
                                 primary: Color.fromARGB(255, 250, 251, 252),
                               ),
                               onPressed: () {},
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8.0),
                                 child: Text(
                                   'Forget Password?',
                                   style: TextStyle(
@@ -175,7 +177,7 @@ class _loginState extends State<login> {
                                               // }
                                             }
                                           },
-                                          child: Text(
+                                          child: const Text(
                                             "LOGIN",
                                             style: TextStyle(
                                               fontSize: 18,
@@ -197,7 +199,7 @@ class _loginState extends State<login> {
                               children: [
                                 Center(
                                   child: Container(
-                                    child: Text(
+                                    child: const Text(
                                       'Dont Have An Account?..',
                                       style: TextStyle(
                                         fontSize: 14,
@@ -209,8 +211,8 @@ class _loginState extends State<login> {
                                 Container(
                                   child: TextButton(
                                     style: TextButton.styleFrom(
-                                      primary:
-                                          Color.fromARGB(255, 250, 251, 252),
+                                      primary: const Color.fromARGB(
+                                          255, 250, 251, 252),
                                     ),
                                     onPressed: () {
                                       Navigator.push(
@@ -218,9 +220,9 @@ class _loginState extends State<login> {
                                           MaterialPageRoute(
                                               builder: (context) => signup()));
                                     },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0),
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 8.0),
                                       child: Text(
                                         'SIGNUP',
                                         style: TextStyle(
