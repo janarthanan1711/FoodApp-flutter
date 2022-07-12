@@ -58,26 +58,7 @@ class _signupState extends State<signup> {
         .catchError((e) {
       Fluttertoast.showToast(msg: e!.message);
     });
-    //   .catchError((onError) {
-    // print(onError);
-    // });
-    // .then((authUser) {
-    //   if (authUser.user != null) {
-    //     Navigator.push(
-    //         context, MaterialPageRoute(builder: (context) => login()));
-    //   }
-    // });
   }
-  // void signUp(String _emails, String _passwords) async {
-  //   if (formKeys.currentState!.validate()) {
-  //     await FirebaseAuth.instance
-  //         .createUserWithEmailAndPassword(email: _emails, password: _passwords)
-  //         .then((value) => {postDetailsToFirestore()})
-  //         .catchError((e) {
-  //       Fluttertoast.showToast(msg: e!.message);
-  //     });
-  //   }
-  // }
 
   @override
   void initState() {
@@ -229,7 +210,7 @@ class _signupState extends State<signup> {
                                 }
                                 return null;
                               }),
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.call,
                                     color: Colors.orange,

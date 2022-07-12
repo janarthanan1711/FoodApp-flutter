@@ -161,22 +161,11 @@ class _loginState extends State<login> {
                                                 .validate()) {
                                               (formKey.currentState?.save());
                                               signIn(context);
-                                              // if (_email ==
-                                              //         "test123@gmail.com" &&
-                                              //     _password == "pass@123") {
-                                              //   FocusScope.of(context)
-                                              //       .unfocus();
-                                              // Navigator.push(
-                                              //     context,
-                                              //     MaterialPageRoute(
-                                              //         builder: (context) =>
-                                              //             home()));
-                                              // } else {
-                                              //   print(
-                                              //       "Email and Password is invalid!");
-                                              // }
                                             }
                                           },
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
                                           child: const Text(
                                             "LOGIN",
                                             style: TextStyle(
@@ -184,9 +173,6 @@ class _loginState extends State<login> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15)),
                                         ),
                                       ),
                                     ),
