@@ -267,7 +267,6 @@ class _signupState extends State<signup> {
                             ),
                           ),
                           Row(
-                            // crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Column(
                                 children: [
