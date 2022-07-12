@@ -572,8 +572,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                 children: [
                                   Wrap(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                      const Padding(
+                                        padding: EdgeInsets.all(8.0),
                                         child: CircleAvatar(
                                           radius: 40,
                                           backgroundImage:
