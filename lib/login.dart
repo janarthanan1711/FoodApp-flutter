@@ -98,6 +98,7 @@ class _loginState extends State<login> {
                                   labelText: "EMAIL ADDRESS"),
                             ),
                             TextFormField(
+                              obscureText: true,
                               keyboardType: TextInputType.visiblePassword,
                               onSaved: (value) {
                                 _password = value!;
@@ -163,11 +164,11 @@ class _loginState extends State<login> {
                                               //     _password == "pass@123") {
                                               //   FocusScope.of(context)
                                               //       .unfocus();
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          home()));
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) =>
+                                              //             home()));
                                               // } else {
                                               //   print(
                                               //       "Email and Password is invalid!");
