@@ -1,7 +1,4 @@
 // ignore_for_file: unnecessary_new, unnecessary_this, deprecated_member_use
-
-// import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -77,10 +74,17 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                       color: Color.fromARGB(255, 5, 5, 5),
                     ),
                   ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: InkWell(
+                  onTap: () {},
+                  child: const Icon(Icons.keyboard_arrow_down_rounded,
+                      color: Color.fromARGB(255, 5, 5, 5))),
+            ),
           ],
         ),
         drawer: Drawer(
-          backgroundColor: Color.fromARGB(255, 187, 178, 178),
+          backgroundColor: const Color.fromARGB(255, 187, 178, 178),
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
