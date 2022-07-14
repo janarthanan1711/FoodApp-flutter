@@ -1,4 +1,4 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, deprecated_member_use
 
 import 'dart:math';
 
@@ -128,7 +128,7 @@ class _signupState extends State<signup> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(11),
+                  margin: const EdgeInsets.all(11),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(11),
                     color: Colors.grey[200],

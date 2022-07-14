@@ -1,5 +1,6 @@
 import 'package:flutter_application_3/signup.dart';
 
+// ignore: camel_case_types
 class userModel {
   String? name;
   String? email;
