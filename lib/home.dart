@@ -115,62 +115,6 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                     ),
                   ],
                 ),
-                // drawer: Drawer(
-                //   backgroundColor: const Color.fromARGB(255, 187, 178, 178),
-                //   child: ListView(
-                //     padding: EdgeInsets.zero,
-                //     children: [
-                //       DrawerHeader(
-                //         decoration: const BoxDecoration(
-                //           color: Color.fromARGB(255, 250, 177, 69),
-                //         ),
-                //         child: Column(
-                //           children: [
-                //             const Center(
-                //               child: CircleAvatar(
-                //                 radius: 50,
-                //                 backgroundImage: AssetImage("images/account.jpg"),
-                //               ),
-                //             ),
-                //             Container(
-                //               child: const Text(
-                //                 "Account",
-                //                 style: TextStyle(
-                //                     fontSize: 30,
-                //                     fontWeight: FontWeight.w600,
-                //                     color: Color.fromARGB(255, 5, 5, 5)),
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //       ListTile(
-                //         title: const Text("Favourite"),
-                //         onTap: () {
-                //           Navigator.pop(context);
-                //         },
-                //       ),
-                //       ListTile(
-                //         title: const Text("Share"),
-                //         onTap: () {
-                //           Navigator.pop(context);
-                //         },
-                //       ),
-                //       ListTile(
-                //         title: const Text("Settings"),
-                //         onTap: () {
-                //           Navigator.pop(context);
-                //         },
-                //       ),
-                //       ListTile(
-                //         title: const Text("Exit"),
-                //         onTap: () {
-                //           Navigator.pop(context);
-                //         },
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
