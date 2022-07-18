@@ -197,27 +197,24 @@ class _loginState extends State<login> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    primary: const Color.fromARGB(
-                                        255, 250, 251, 252),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => signup()));
-                                  },
-                                  child: const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 8.0),
-                                    child: Text(
-                                      'SIGNUP',
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.red,
-                                      ),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary:
+                                      const Color.fromARGB(255, 250, 251, 252),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => signup()));
+                                },
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Text(
+                                    'SIGNUP',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.red,
                                     ),
                                   ),
                                 ),
