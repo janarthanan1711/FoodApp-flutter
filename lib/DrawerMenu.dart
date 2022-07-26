@@ -61,7 +61,8 @@ class MenuList extends StatelessWidget {
   final String title;
   final IconData iconName;
 
-  MenuList({
+  // ignore: use_key_in_widget_constructors
+  const MenuList({
     required this.title,
     required this.iconName,
   });
