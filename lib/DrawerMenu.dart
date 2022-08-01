@@ -17,8 +17,8 @@ class DrawerMenu extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: ListView(
-          children: [
-            const UserAccountsDrawerHeader(
+          children: const [
+            UserAccountsDrawerHeader(
                 currentAccountPicture: CircleAvatar(
                     backgroundImage: AssetImage("images/account.jpg")),
                 decoration: BoxDecoration(color: Colors.transparent),
@@ -72,7 +72,7 @@ class MenuList extends StatelessWidget {
     return ListTile(
       onTap: () {},
       leading: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: Colors.grey[200],
             borderRadius: BorderRadius.circular(10),
