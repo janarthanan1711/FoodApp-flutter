@@ -1,13 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_application_3/main.dart';
 import 'package:flutter_application_3/home.dart';
 import 'package:flutter_application_3/signup.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class login extends StatefulWidget {
@@ -151,10 +147,13 @@ class _loginState extends State<login> {
                                     height: 75,
                                     child: Padding(
                                       padding: const EdgeInsets.all(11.0),
-                                      child: RaisedButton(
-                                        elevation: 5,
-                                        splashColor: Colors.deepOrange,
-                                        color: Colors.orange,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.orange,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                        ),
                                         onPressed: () {
                                           if (formKey.currentState!
                                               .validate()) {
@@ -166,9 +165,6 @@ class _loginState extends State<login> {
                                                     'Please Fill the User Data');
                                           }
                                         },
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
                                         child: const Text(
                                           "LOGIN",
                                           style: TextStyle(

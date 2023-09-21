@@ -1,10 +1,7 @@
 // ignore_for_file: unnecessary_new, unnecessary_this, deprecated_member_use
-import 'package:flutter/cupertino.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_application_3/DrawerMenu.dart';
-import 'package:flutter_application_3/main.dart';
 
 class home extends StatefulWidget {
   home({Key? key}) : super(key: key);
@@ -18,6 +15,13 @@ class home extends StatefulWidget {
 class _homeState extends State<home> with TickerProviderStateMixin {
   late TabController _tabController;
   bool isSearching = false;
+  final carouselList = [
+    Image.asset("images/biriyani.jpg"),
+    Image.asset("images/parotta.jpg"),
+    Image.asset("images/burger1.jpg"),
+    Image.asset("images/grilled_chicken.jpg"),
+    Image.asset("images/shawarma.jpg")
+  ];
 
   @override
   void initState() {
@@ -29,6 +33,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
   double translatey = 0.0;
   double scale = 1;
   bool toggle = false;
+  int _activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -120,19 +125,18 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                     children: [
                       SizedBox(
                         height: 270,
-                        child: Carousel(
-                          boxFit: BoxFit.fill,
-                          images: [
-                            Image.asset("images/biriyani.jpg"),
-                            Image.asset("images/parotta.jpg"),
-                            Image.asset("images/burger1.jpg"),
-                            Image.asset("images/grilled_chicken.jpg"),
-                            Image.asset("images/shawarma.jpg")
-                          ],
-                          autoplay: false,
-                          dotColor: Color.fromARGB(255, 252, 135, 1),
-                          // dotBgColor: Color.fromARGB(255, 39, 24, 66),
-                          dotSpacing: 40,
+                        child: CarouselSlider(
+                          items: carouselList,
+                          options: CarouselOptions(
+                              autoPlay: true,
+                              height: 270,
+                              viewportFraction: 1.0,
+                              enlargeCenterPage: false,
+                              onPageChanged: (activeIndex, reason) {
+                                setState(() {
+                                  _activeIndex = activeIndex;
+                                });
+                              }),
                         ),
                       ),
                       Container(
@@ -141,14 +145,15 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                           child: TabBar(
                               indicator: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Color.fromARGB(255, 252, 135, 1)),
+                                  color:
+                                      const Color.fromARGB(255, 252, 135, 1)),
                               controller: _tabController,
                               isScrollable: true,
                               labelPadding:
-                                  EdgeInsets.only(left: 20, right: 20),
+                                  const EdgeInsets.only(left: 20, right: 20),
                               labelColor: Colors.black,
                               unselectedLabelColor:
-                                  Color.fromARGB(221, 59, 59, 59),
+                                  const Color.fromARGB(221, 59, 59, 59),
                               tabs: const [
                                 Tab(
                                     child: Text(
@@ -213,7 +218,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
@@ -230,14 +236,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Idly",
                                                         style: TextStyle(
@@ -281,7 +287,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
@@ -311,7 +317,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
@@ -328,14 +335,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Dosa",
                                                         style: TextStyle(
@@ -379,7 +386,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
@@ -409,7 +416,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
@@ -426,14 +434,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Roti",
                                                         style: TextStyle(
@@ -477,7 +485,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
@@ -507,7 +515,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
@@ -524,14 +533,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Poori",
                                                         style: TextStyle(
@@ -575,7 +584,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
@@ -605,7 +614,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
@@ -622,14 +632,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Pongal",
                                                         style: TextStyle(
@@ -657,7 +667,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(11.0),
                                                 child: Container(
-                                                  margin: EdgeInsets.symmetric(
+                                                  margin: const EdgeInsets
+                                                          .symmetric(
                                                       vertical: 11.0,
                                                       horizontal: 10.0),
                                                   child: Row(
@@ -672,12 +683,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Text(
+                                                        child: const Text(
                                                           "Order",
                                                           style: TextStyle(
                                                             fontFamily:
@@ -702,14 +713,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
                                             children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                              const Padding(
+                                                padding: EdgeInsets.all(8.0),
                                                 child: CircleAvatar(
                                                   radius: 40,
                                                   backgroundImage: AssetImage(
@@ -720,14 +731,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Vada",
                                                         style: TextStyle(
@@ -755,7 +766,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(11.0),
                                                 child: Container(
-                                                  margin: EdgeInsets.symmetric(
+                                                  margin: const EdgeInsets
+                                                          .symmetric(
                                                       horizontal: 10,
                                                       vertical: 11),
                                                   child: Row(
@@ -770,12 +782,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Text(
+                                                        child: const Text(
                                                           "Order",
                                                           style: TextStyle(
                                                             fontFamily:
@@ -800,14 +812,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
                                             children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                              const Padding(
+                                                padding: EdgeInsets.all(8.0),
                                                 child: CircleAvatar(
                                                   radius: 40,
                                                   backgroundImage: AssetImage(
@@ -818,14 +830,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Kichdy",
                                                         style: TextStyle(
@@ -853,7 +865,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(11.0),
                                                 child: Container(
-                                                  margin: EdgeInsets.symmetric(
+                                                  margin: const EdgeInsets
+                                                          .symmetric(
                                                       vertical: 11.0,
                                                       horizontal: 10),
                                                   child: Row(
@@ -868,12 +881,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Text(
+                                                        child: const Text(
                                                           "Order",
                                                           style: TextStyle(
                                                             fontFamily:
@@ -898,14 +911,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
                                           Wrap(
                                             children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                              const Padding(
+                                                padding: EdgeInsets.all(8.0),
                                                 child: CircleAvatar(
                                                   radius: 40,
                                                   backgroundImage: AssetImage(
@@ -916,14 +929,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(15.0),
                                                 child: Container(
-                                                  margin:
-                                                      EdgeInsets.only(top: 10),
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
                                                   width: 75,
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceEvenly,
-                                                    children: const [
+                                                    children: [
                                                       Text(
                                                         "Fried Rice",
                                                         style: TextStyle(
@@ -951,7 +964,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 padding:
                                                     const EdgeInsets.all(11.0),
                                                 child: Container(
-                                                  margin: EdgeInsets.symmetric(
+                                                  margin: const EdgeInsets
+                                                          .symmetric(
                                                       horizontal: 10,
                                                       vertical: 11),
                                                   child: Row(
@@ -965,12 +979,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                         icon: const Icon(
                                                             Icons.favorite),
                                                       ),
-                                                      RaisedButton(
+                                                      ElevatedButton(
                                                         onPressed: () {
                                                           Navigator.pop(
                                                               context);
                                                         },
-                                                        child: Text(
+                                                        child: const Text(
                                                           "Order",
                                                           style: TextStyle(
                                                             fontFamily:
@@ -1002,11 +1016,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1017,11 +1032,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Chicken Biriyani",
                                                     style: TextStyle(
@@ -1046,8 +1061,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1060,11 +1075,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1087,11 +1102,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1102,11 +1118,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Mutton Biriyani",
                                                     style: TextStyle(
@@ -1131,8 +1147,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1145,11 +1161,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1172,11 +1188,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1187,11 +1204,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Egg Biriyani",
                                                     style: TextStyle(
@@ -1216,8 +1233,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1230,11 +1247,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1257,11 +1274,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1272,11 +1290,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Chilli Chicken",
                                                     style: TextStyle(
@@ -1301,8 +1319,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1315,11 +1333,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1342,11 +1360,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1357,11 +1376,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Mutton Chukka",
                                                     style: TextStyle(
@@ -1386,8 +1405,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1400,11 +1419,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1427,11 +1446,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1442,11 +1462,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Grill Chicken",
                                                     style: TextStyle(
@@ -1471,8 +1491,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1485,11 +1505,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1512,11 +1532,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1527,11 +1548,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Mutton Pepper",
                                                     style: TextStyle(
@@ -1556,8 +1577,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1570,11 +1591,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1597,11 +1618,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1612,11 +1634,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Parotta",
                                                     style: TextStyle(
@@ -1641,8 +1663,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1655,11 +1677,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1682,11 +1704,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1697,11 +1720,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Dragon Chicken",
                                                     style: TextStyle(
@@ -1726,8 +1749,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1740,11 +1763,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1774,11 +1797,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1789,11 +1813,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Ice Cream",
                                                     style: TextStyle(
@@ -1818,8 +1842,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1832,11 +1856,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1859,11 +1883,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1874,11 +1899,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Brownie",
                                                     style: TextStyle(
@@ -1903,8 +1928,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1917,11 +1942,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -1944,11 +1969,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -1959,11 +1985,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Salad",
                                                     style: TextStyle(
@@ -1988,8 +2014,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2002,11 +2028,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2029,11 +2055,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2044,11 +2071,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Cheese Cake",
                                                     style: TextStyle(
@@ -2073,8 +2100,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2087,11 +2114,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2114,11 +2141,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2129,11 +2157,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Cookies",
                                                     style: TextStyle(
@@ -2158,8 +2186,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2172,11 +2200,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2199,11 +2227,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2214,11 +2243,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Cup Cake",
                                                     style: TextStyle(
@@ -2243,8 +2272,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2257,11 +2286,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2291,11 +2320,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2306,11 +2336,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Bhel Puri",
                                                     style: TextStyle(
@@ -2335,8 +2365,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2349,11 +2379,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2376,11 +2406,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2391,11 +2422,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Pani Puri",
                                                     style: TextStyle(
@@ -2420,8 +2451,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2434,11 +2465,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2461,11 +2492,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2476,11 +2508,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Samosa",
                                                     style: TextStyle(
@@ -2505,8 +2537,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2519,11 +2551,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2546,11 +2578,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2561,11 +2594,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Shawarma",
                                                     style: TextStyle(
@@ -2590,8 +2623,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2604,11 +2637,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2631,11 +2664,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2646,11 +2680,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Burger",
                                                     style: TextStyle(
@@ -2675,8 +2709,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2689,11 +2723,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2723,11 +2757,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 100,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2738,11 +2773,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Choco",
                                                     style: TextStyle(
@@ -2767,8 +2802,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2781,11 +2816,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2808,11 +2843,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2823,11 +2859,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Venilla",
                                                     style: TextStyle(
@@ -2852,8 +2888,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2866,11 +2902,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2893,11 +2929,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2908,11 +2945,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Apple",
                                                     style: TextStyle(
@@ -2937,8 +2974,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -2951,11 +2988,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -2978,11 +3015,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage: AssetImage(
@@ -2993,11 +3031,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Orange",
                                                     style: TextStyle(
@@ -3022,8 +3060,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -3036,11 +3074,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:
@@ -3063,11 +3101,12 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
                                       height: 90,
-                                      color: Color.fromARGB(255, 201, 196, 194),
+                                      color: const Color.fromARGB(
+                                          255, 201, 196, 194),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                          const Padding(
+                                            padding: EdgeInsets.all(8.0),
                                             child: CircleAvatar(
                                               radius: 40,
                                               backgroundImage:
@@ -3078,11 +3117,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                             padding: const EdgeInsets.all(15.0),
                                             child: Container(
                                               width: 90,
-                                              child: Column(
+                                              child: const Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceEvenly,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Lemon",
                                                     style: TextStyle(
@@ -3107,8 +3146,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                           Padding(
                                             padding: const EdgeInsets.all(11.0),
                                             child: Container(
-                                              margin:
-                                                  EdgeInsets.only(left: 12.0),
+                                              margin: const EdgeInsets.only(
+                                                  left: 12.0),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -3121,11 +3160,11 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     icon: const Icon(
                                                         Icons.favorite),
                                                   ),
-                                                  RaisedButton(
+                                                  ElevatedButton(
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: Text(
+                                                    child: const Text(
                                                       "Order",
                                                       style: TextStyle(
                                                         fontFamily:

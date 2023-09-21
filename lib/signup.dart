@@ -1,16 +1,10 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, deprecated_member_use
 
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:carousel_pro/carousel_pro.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_application_3/main.dart';
-import 'package:flutter_application_3/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_3/login.dart';
 import 'package:flutter_application_3/model/userModel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -256,10 +250,13 @@ class _signupState extends State<signup> {
                                     height: 75,
                                     child: Padding(
                                       padding: const EdgeInsets.all(11.0),
-                                      child: RaisedButton(
-                                        elevation: 5,
-                                        splashColor: Colors.deepOrange,
-                                        color: Colors.orange,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.orange,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                        ),
                                         onPressed: () {
                                           if (formKeys.currentState!
                                               .validate()) {
@@ -283,9 +280,6 @@ class _signupState extends State<signup> {
                                                     'Please enter a valid details');
                                           }
                                         },
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
                                         child: const Text(
                                           "SIGNUP",
                                           style: TextStyle(
